@@ -1,0 +1,24 @@
+# Dependencies
+node_modules/
+
+# Build output
+build/
+dist/
+dist-ssr/
+coverage/
+server.js
+
+# Environment: .env.example is committed, real secrets are not
+.env*
+!.env.example
+
+# Logs
+*.log
+
+# Editor, OS and tooling caches
+.DS_Store
+Thumbs.db
+.idea/
+.vite/
+*.tsbuildinfo
+config.bat
