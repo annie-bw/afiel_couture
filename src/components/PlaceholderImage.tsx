@@ -57,8 +57,8 @@ const FALLBACK_RATIO: Record<Fit, string> = {
  * back to the brand gradient when it does not. That means photos can be added
  * one at a time — any slot without a file yet keeps looking intentional.
  *
- * Drop files into `public/` using the path in `src`, e.g. src="/images/home/hero.jpg"
- * lives at `public/images/home/hero.jpg`.
+ * Drop files into `public/` using the path in `src`: a src of
+ * "/images/home/hero-section.jpg" lives at `public/images/home/hero-section.jpg`.
  */
 export default function PlaceholderImage({
   from,

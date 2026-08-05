@@ -89,9 +89,9 @@ export const PRODUCTS: Product[] = [
     cover: '/images/home/five_categories/school-uniforms.jpg',
     gallery: [
       { label: 'Shirts', src: '/images/products/school-uniforms/shirts.jpeg' },
-      { label: 'Blazers', src: '/images/products/school-uniforms/blazers.png' },
-      { label: 'Dresses & Shorts', src: '/images/products/school-uniforms/dresses-shorts.png' },
-      { label: 'Sportswear', src: '/images/products/school-uniforms/sportswear.png' },
+      { label: 'Blazers', src: '/images/products/school-uniforms/blazers.jpg' },
+      { label: 'Dresses & Shorts', src: '/images/products/school-uniforms/dresses-shorts.jpg' },
+      { label: 'Sportswear', src: '/images/products/school-uniforms/sportswear.jpg' },
     ],
   },
   {
@@ -102,12 +102,12 @@ export const PRODUCTS: Product[] = [
       'Your team is the first thing a customer sees. We outfit hotels, restaurants, clinics, banks, and security firms, matching your colours exactly and adding embroidery or name tags as needed. Repeat orders stay consistent because we hold your specification on file.',
     colorFrom: '#5A5158',
     colorTo: '#2A2530',
-    cover: '/images/home/five_categories/corporate-uniforms.png',
+    cover: '/images/home/five_categories/corporate-uniforms.jpg',
     gallery: [
       { label: 'Hotel Staff', src: '/images/products/corporate-uniforms/hotel-staff.jpg' },
       { label: 'Restaurant Staff', src: '/images/products/corporate-uniforms/restaurant-staff.jpeg' },
       { label: 'Chefs', src: '/images/products/corporate-uniforms/chefs.jpg' },
-      { label: 'Security', src: '/images/products/corporate-uniforms/security.png' },
+      { label: 'Security', src: '/images/products/corporate-uniforms/security.jpg' },
       { label: 'Logo Embroidery', src: '/images/products/corporate-uniforms/logo-embroidery.jpg' },
       { label: 'Technician Coats', src: '/images/products/corporate-uniforms/technician-coats.jpg' },
     ],
@@ -174,7 +174,7 @@ export const SERVICES: Service[] = [
     includes: ['Personal styling', 'Fabric selection', 'Colour coordination', 'Body shape analysis', 'Wedding styling', 'Corporate uniform planning'],
     images: [
       { label: 'Colour Analysis', src: '/images/services/fashion-consultation/colour-analysis.jpg' },
-      { label: 'Designer Fitting', src: '/images/services/fashion-consultation/designer-fitting.png' },
+      { label: 'Designer Fitting', src: '/images/services/fashion-consultation/designer-fitting.jpg' },
     ],
   },
 ];

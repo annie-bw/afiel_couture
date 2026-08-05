@@ -1,20 +1,12 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "rewrites": [
-    {
-      "comment": "React Router handles routing in the browser, so a direct visit to /products or /about must still be served index.html. Vercel checks the filesystem before applying rewrites, so real files and assets are unaffected.",
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
-  ],
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
   "headers": [
     {
-      "comment": "Vite fingerprints these filenames, so they can never go stale.",
       "source": "/assets/(.*)",
       "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
     },
     {
-      "comment": "Photographs keep stable names and get replaced in place, so cache for a day and revalidate rather than pinning them for a year.",
       "source": "/images/(.*)",
       "headers": [{ "key": "Cache-Control", "value": "public, max-age=86400, stale-while-revalidate=604800" }]
     }
