@@ -8,7 +8,7 @@ export default function CategoryShowcase() {
   const [hoveredIndex, setHoveredIndex] = useState(0);
 
   return (
-    <section className="reveal-section py-24 md:py-32 bg-[#3a2a26] text-pearl relative overflow-hidden">
+    <section className="py-16 sm:py-24 md:py-32 bg-[#3a2a26] text-pearl relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-[-20%] right-[-10%] w-[60%] h-[60%] bg-gradient-to-bl from-[#7A1E2B]/40 to-transparent rounded-full blur-[100px]"></div>
         <div className="absolute bottom-[-10%] left-[-10%] w-[50%] h-[50%] bg-[#5C4530]/50 rounded-full blur-[100px]"></div>
@@ -19,7 +19,7 @@ export default function CategoryShowcase() {
           <div className="max-w-3xl stagger-item">
             <h3 className="font-sans text-[10px] tracking-[0.3em] uppercase text-champagne font-semibold mb-6">Our Products</h3>
             <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-normal leading-[1.1] tracking-tight mb-8">
-              Five categories. <br />
+              Four categories. <br />
               <span className="italic font-light text-pearl/80">One standard of craft.</span>
             </h2>
             <p className="font-sans text-sm md:text-base text-pearl/70 leading-relaxed max-w-lg mb-10">
@@ -49,7 +49,7 @@ export default function CategoryShowcase() {
         </div>
 
         <div
-          className="flex flex-col lg:flex-row gap-4 lg:gap-6 h-[1200px] sm:h-[900px] lg:h-[600px] w-full"
+          className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:flex lg:flex-row lg:gap-6 lg:h-[600px] w-full"
           onMouseLeave={() => setHoveredIndex(0)}
         >
           {PRODUCTS.map((prod, idx) => {
@@ -59,25 +59,33 @@ export default function CategoryShowcase() {
                 to={`/products/${prod.slug}`}
                 key={prod.slug}
                 onMouseEnter={() => setHoveredIndex(idx)}
-                className={`stagger-item relative rounded-[2rem] overflow-hidden cursor-pointer transition-all duration-[800ms] ease-[cubic-bezier(0.25,1,0.5,1)] group bg-charcoal/20 block ${
-                  isExpanded ? 'lg:flex-[3] flex-[3]' : 'lg:flex-[1] flex-[1]'
+                className={`stagger-item relative aspect-4/5 lg:aspect-auto rounded-[2rem] overflow-hidden cursor-pointer transition-all duration-[800ms] ease-[cubic-bezier(0.25,1,0.5,1)] group bg-charcoal/20 block ${
+                  isExpanded ? 'lg:flex-[3]' : 'lg:flex-[1]'
                 }`}
               >
                 <div className="absolute inset-0 w-full h-full transition-transform duration-1000 group-hover:scale-105">
                   <PlaceholderImage from={prod.colorFrom} to={prod.colorTo} src={prod.cover} alt={prod.title} />
                 </div>
-                <div className={`absolute inset-0 transition-colors duration-[800ms] ${isExpanded ? 'bg-black/10' : 'bg-black/40 group-hover:bg-black/20'}`}></div>
+                {/* Every card is captioned below lg, so the text gets a gradient
+                    to sit on rather than the flat wash the open card uses. */}
+                <div className="absolute inset-0 bg-linear-to-t from-black/75 via-black/15 to-black/10 lg:hidden"></div>
+                <div className={`absolute inset-0 hidden lg:block transition-colors duration-[800ms] ${isExpanded ? 'bg-black/10' : 'bg-black/40 group-hover:bg-black/20'}`}></div>
 
-                <div className={`absolute top-6 left-6 font-sans text-xs font-semibold tracking-widest text-white transition-opacity duration-500 ${isExpanded ? 'opacity-100' : 'opacity-0'}`}>
+                <div className={`absolute top-5 left-5 hidden lg:block font-sans text-xs font-semibold tracking-widest text-white transition-opacity duration-500 ${isExpanded ? 'opacity-100' : 'opacity-0'}`}>
                   {String(idx + 1).padStart(2, '0')}
                 </div>
 
-                <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center transition-all duration-500 border border-white/30 shadow-xl ${isExpanded ? 'opacity-0 scale-150' : 'opacity-100 scale-100 group-hover:bg-white/30 group-hover:scale-110'}`}>
+                <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-white/20 backdrop-blur-md hidden lg:flex items-center justify-center transition-all duration-500 border border-white/30 shadow-xl ${isExpanded ? 'opacity-0 scale-150' : 'opacity-100 scale-100 group-hover:bg-white/30 group-hover:scale-110'}`}>
                   <ArrowRight size={20} className="text-white -rotate-45" />
                 </div>
 
+                <div className="absolute bottom-5 left-5 right-5 lg:hidden">
+                  <h4 className="font-serif text-xl sm:text-2xl text-white mb-1">{prod.title}</h4>
+                  <p className="font-sans text-[10px] uppercase tracking-widest text-white/80">{prod.tagline}</p>
+                </div>
+
                 {isExpanded && (
-                  <div className="absolute bottom-10 left-10 right-10 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300 fill-mode-forwards opacity-0">
+                  <div className="absolute bottom-10 left-10 right-10 hidden lg:block animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300 fill-mode-forwards opacity-0">
                     <h4 className="font-serif text-2xl md:text-3xl text-white mb-2">{prod.title}</h4>
                     <p className="font-sans text-xs uppercase tracking-widest text-white/80">{prod.tagline}</p>
                   </div>

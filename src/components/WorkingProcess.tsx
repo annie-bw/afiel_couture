@@ -4,7 +4,7 @@ import { PROCESS } from '../data/content';
 
 export default function WorkingProcess() {
   return (
-    <section className="reveal-section py-24 md:py-32 bg-charcoal text-pearl">
+    <section className="py-24 md:py-32 bg-charcoal text-pearl">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="max-w-2xl mb-14 md:mb-20">
           <h3 className="font-sans text-[10px] tracking-[0.3em] uppercase text-champagne font-semibold mb-5">How We Work</h3>

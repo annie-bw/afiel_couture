@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { Phone, Mail, MapPin, Clock, Instagram, ExternalLink } from 'lucide-react';
 import { CONTACT } from '../data/content';
+import usePageMeta from '../lib/usePageMeta';
 
 /** lucide-react ships no TikTok glyph, so this one is drawn inline. */
 function TikTok({ size = 18 }: { size?: number }) {
@@ -31,6 +32,11 @@ const socials = [
 const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(CONTACT.addressFull)}`;
 
 export default function Contact() {
+  usePageMeta(
+    'Contact',
+    'Visit KG 7 St, Rindiro, Kimironko, Kigali. Call +250 796 690 256 or email afielcouture@gmail.com. Open Monday to Saturday, 8:00 AM to 6:00 PM.',
+  );
+
   return (
     <div className="bg-pearl min-h-screen pb-24">
       {/* Hero. The photograph is bright and busy, so it sits under a charcoal

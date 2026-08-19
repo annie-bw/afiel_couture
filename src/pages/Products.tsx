@@ -4,11 +4,24 @@ import { Link, useParams, useNavigate } from 'react-router-dom';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { PRODUCTS } from '../data/content';
 import PlaceholderImage from '../components/PlaceholderImage';
+import usePageMeta from '../lib/usePageMeta';
+
+// Two categories per line. Left to flex-wrap the first line took three labels
+// and left the last one on its own, so the pairs are split up front instead.
+const TABS_PER_ROW = 2;
+const TAB_ROWS = Array.from(
+  { length: Math.ceil(PRODUCTS.length / TABS_PER_ROW) },
+  (_, row) => PRODUCTS.slice(row * TABS_PER_ROW, row * TABS_PER_ROW + TABS_PER_ROW),
+);
 
 export default function Products() {
   const { slug } = useParams();
   const navigate = useNavigate();
   const active = PRODUCTS.find((p) => p.slug === slug) || PRODUCTS[0];
+
+  // The snippet follows the category being viewed, so /products/school-uniforms
+  // lists in search as its own page rather than as a copy of /products.
+  usePageMeta(active.title, active.description);
 
   const [index, setIndex] = useState(0);
   const count = active.gallery.length;
@@ -49,20 +62,25 @@ export default function Products() {
           </p>
           <h1 className="font-serif text-3xl md:text-4xl text-charcoal mb-5">Products</h1>
 
-          {/* Category switcher */}
-          <div className="flex flex-wrap gap-2 mb-7">
-            {PRODUCTS.map((p) => (
-              <button
-                key={p.slug}
-                onClick={() => navigate(`/products/${p.slug}`)}
-                className={`px-4 py-2 rounded-full font-sans text-[11px] uppercase tracking-wide transition-colors ${
-                  active.slug === p.slug
-                    ? 'bg-burgundy text-pearl'
-                    : 'bg-white text-charcoal border border-charcoal/10 hover:border-burgundy/40'
-                }`}
-              >
-                {p.title}
-              </button>
+          {/* Category switcher. One flex line per pair; each pair still wraps
+              on its own on phones, where two labels do not fit one line. */}
+          <div className="flex flex-col gap-2 mb-7">
+            {TAB_ROWS.map((row, i) => (
+              <div key={i} className="flex flex-wrap gap-2">
+                {row.map((p) => (
+                  <button
+                    key={p.slug}
+                    onClick={() => navigate(`/products/${p.slug}`)}
+                    className={`px-4 py-2 rounded-full font-sans text-[11px] uppercase tracking-wide transition-colors ${
+                      active.slug === p.slug
+                        ? 'bg-burgundy text-pearl'
+                        : 'bg-white text-charcoal border border-charcoal/10 hover:border-burgundy/40'
+                    }`}
+                  >
+                    {p.title}
+                  </button>
+                ))}
+              </div>
             ))}
           </div>
 

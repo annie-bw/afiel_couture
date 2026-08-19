@@ -24,3 +24,9 @@ Thumbs.db
 config.bat
 
 .vercel
+
+# Video sources for scripts/blacken-hero-video.py. Not used by the site.
+scripts/*.mp4
+
+# Full-resolution originals kept by scripts/optimize-images.py.
+originals/

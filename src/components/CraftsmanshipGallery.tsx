@@ -44,7 +44,7 @@ export default function CraftsmanshipGallery() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative h-screen min-h-[700px] bg-charcoal text-pearl border-y border-champagne/10 overflow-hidden flex flex-col">
+    <section ref={sectionRef} className="relative h-svh min-h-[560px] md:min-h-[700px] bg-charcoal text-pearl border-y border-champagne/10 overflow-hidden flex flex-col">
       <div className="w-full px-6 md:px-12 pt-16 md:pt-24 flex justify-between items-end max-w-7xl mx-auto z-20 pointer-events-none shrink-0 relative">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>
           <h3 className="font-sans text-[10px] tracking-[0.3em] uppercase text-champagne font-semibold mb-2 md:mb-4">Behind The Scenes</h3>
@@ -58,7 +58,7 @@ export default function CraftsmanshipGallery() {
           {slides.map((s, i) => (
             <div
               key={i}
-              className={`relative h-[50vh] sm:h-[55vh] md:h-[60vh] max-h-[500px] w-auto shrink-0 overflow-hidden rounded-2xl ${
+              className={`relative h-[40svh] sm:h-[50svh] md:h-[60svh] max-h-[500px] w-auto shrink-0 overflow-hidden rounded-2xl ${
                 i % 2 === 0 ? 'aspect-[3/4] translate-y-4 md:translate-y-8' : 'aspect-[4/5] -translate-y-4 md:-translate-y-8'
               }`}
             >

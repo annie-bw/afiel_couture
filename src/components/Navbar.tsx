@@ -4,9 +4,12 @@ import { Menu, X } from 'lucide-react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { BRAND } from '../data/content';
 
+// Both the desktop row and the mobile overlay map over this, so a single entry
+// picks up the shared type styling, active state, and hover behaviour.
 const links = [
   { label: 'Home', to: '/' },
   { label: 'Products', to: '/products' },
+  { label: 'Fabrics', to: '/fabrics' },
   { label: 'Services', to: '/services' },
   { label: 'About Us', to: '/about' },
 ];
@@ -90,7 +93,7 @@ export default function Navbar() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="absolute top-0 left-0 w-full h-screen bg-charcoal text-pearl py-24 px-6 flex flex-col space-y-8 text-center"
+            className="absolute top-0 left-0 w-full h-svh bg-charcoal text-pearl py-24 px-6 flex flex-col space-y-8 text-center"
             initial={{ opacity: 0, y: '-100%' }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: '-100%' }}

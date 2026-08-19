@@ -68,7 +68,7 @@ export const PRODUCTS: Product[] = [
       "Umushanana for the days a family remembers. We make bridal and bridesmaid sets, men's imishanana, pieces for dance troupes, and smaller versions for children. Each one is draped and fitted to the wearer, in fabric chosen with you.",
     colorFrom: '#B08D5E',
     colorTo: '#5C4530',
-    cover: '/images/home/five_categories/mushanana-collection.jpg',
+    cover: '/images/home/five_categories/dress.jpg',
     gallery: [
       { label: 'Bridal Umushanana', src: '/images/products/mushanana-collection/bridal-umushanana.jpeg' },
       { label: 'Male Umushanana', src: '/images/products/mushanana-collection/male-umushanana.jpg' },
@@ -88,10 +88,10 @@ export const PRODUCTS: Product[] = [
     colorTo: '#2E3E45',
     cover: '/images/home/five_categories/school-uniforms.jpg',
     gallery: [
-      { label: 'Shirts', src: '/images/products/school-uniforms/shirts.jpeg' },
-      { label: 'Blazers', src: '/images/products/school-uniforms/blazers.jpg' },
-      { label: 'Dresses & Shorts', src: '/images/products/school-uniforms/dresses-shorts.jpg' },
-      { label: 'Sportswear', src: '/images/products/school-uniforms/sportswear.jpg' },
+      { label: 'Full Uniform', src: '/images/products/school-uniforms/full-uniform.jpg' },
+      { label: 'Middle School', src: '/images/products/school-uniforms/middle-school.jpg' },
+      { label: 'Skirts', src: '/images/products/school-uniforms/skirt.jpg' },
+      { label: 'All Uniforms', src: '/images/products/school-uniforms/all-uniforms.jpg' },
     ],
   },
   {
@@ -110,24 +110,6 @@ export const PRODUCTS: Product[] = [
       { label: 'Security', src: '/images/products/corporate-uniforms/security.jpg' },
       { label: 'Logo Embroidery', src: '/images/products/corporate-uniforms/logo-embroidery.jpg' },
       { label: 'Technician Coats', src: '/images/products/corporate-uniforms/technician-coats.jpg' },
-    ],
-  },
-  {
-    slug: 'premium-fabric-sales',
-    title: 'Premium Fabric Sales',
-    tagline: 'Every garment begins with fabric',
-    description:
-      'We sell the same fabric we manufacture with. Kitenge, satin, Swiss voile, silk, chiffon and organza, along with suiting and uniform cloth, by the meter or by the bolt. Wholesale pricing is available for tailors and institutions.',
-    colorFrom: '#D0B685',
-    colorTo: '#8A6A3D',
-    cover: '/images/home/five_categories/premium-fabric-sales.jpg',
-    gallery: [
-      { label: 'Cotton Kitenge', src: '/images/products/premium-fabric-sales/cotton-kitenge.jpg' },
-      { label: 'Satin', src: '/images/products/premium-fabric-sales/satin.jpg' },
-      { label: 'Kitenge Range', src: '/images/products/premium-fabric-sales/kitenge-range.jpg' },
-      { label: 'Denim', src: '/images/products/premium-fabric-sales/denim.jpg' },
-      { label: 'Assorted Fabrics', src: '/images/products/premium-fabric-sales/assorted-fabrics.jpg' },
-      { label: 'Fabric Collection', src: '/images/products/premium-fabric-sales/fabric-collection.jpg' },
     ],
   },
 ];
@@ -150,7 +132,7 @@ export const SERVICES: Service[] = [
       'Our fabric development process focuses on sourcing, evaluating, and selecting premium textiles for luxury, comfort, durability, and performance. Each fabric is inspected for texture, colour consistency, strength, breathability, finish, and overall quality to ensure garments that are beautiful and long-lasting.',
     includes: ['Sourcing & evaluation', 'Texture inspection', 'Colour consistency checks', 'Strength & breathability testing', 'Finish & quality control'],
     images: [
-      { label: 'Fabric Dyeing', src: '/images/services/fabric-development/fabric-dyeing.jpg' },
+      { label: 'Fabric Dyeing', src: '/images/services/fabric-development/fabric-dyeing.webp' },
       { label: 'Fabric Manufacturing', src: '/images/services/fabric-development/fabric-manufacturing.jpg' },
     ],
   },
@@ -162,8 +144,8 @@ export const SERVICES: Service[] = [
       'We restore the perfect fit through professional alterations and repairs, including waist adjustments, hemming, sleeve adjustments, zip replacement, button replacement, resizing, garment repairs, and restyling. Every alteration is completed with the same attention to detail as our custom-made garments.',
     includes: ['Waist adjustments', 'Hemming', 'Sleeve adjustments', 'Zip & button replacement', 'Resizing', 'Restyling'],
     images: [
-      { label: 'Dress Alteration', src: '/images/services/alterations-repairs/dress-alteration.jpeg' },
-      { label: 'Garment Repair', src: '/images/services/alterations-repairs/garment-repair.jpg' },
+      { label: 'Shirt Restyled', src: '/images/services/alterations-repairs/shirt-altered.jpg' },
+      { label: 'Damaged Cloth Repaired', src: '/images/services/alterations-repairs/damaged-cloth-repair.jpg' },
     ],
   },
   {
@@ -181,13 +163,18 @@ export const SERVICES: Service[] = [
 
 // One-off photo slots that are not part of a product or service list.
 export const SITE_IMAGES = {
-  homeHero: '/images/home/hero-section.jpg',
+  // The cutout, derived from hero-section.jpg by scripts/make-hero-cutout.py.
+  // The original photo has a grey studio backdrop that cannot blend into the
+  // charcoal hero, so the backdrop is removed and the figure sits on it
+  // directly. The source photograph is not in public/ (the site never loads it):
+  // it sits in originals/images/home/hero-section.jpg, which git ignores.
+  homeHero: '/images/home/hero-figure.webp',
   homeStory: '/images/home/our-story.jpg',
-  aboutStory: '/images/about/our-story.jpg',
+  aboutStory: '/images/about/clothshow.jpg',
   aboutWorkshop: [
     { label: 'Fabric Making', src: '/images/about/behind_the_scene/fabric-making.jpg' },
-    { label: 'Rolls of Material', src: '/images/about/behind_the_scene/rolls-of-material.jpg' },
-    { label: 'Stitching', src: '/images/about/behind_the_scene/stitching.jpg' },
+    { label: 'Tissin Material', src: '/images/about/behind_the_scene/tissin-materials.jpg' },
+    { label: 'Stitching', src: '/images/about/behind_the_scene/stitching-tissin.jpg' },
     { label: 'Final Product', src: '/images/about/behind_the_scene/final-product.jpg' },
   ] as GalleryImage[],
 };
@@ -238,18 +225,24 @@ export const PROCESS = [
 // Not rendered anywhere yet. These are invented examples kept only to show the
 // shape the data takes. Replace them with real, attributable client quotes, then
 // restore the testimonials section on the home page.
+// Named speakers and named institutions, supplied by Afiel. The quotes are still
+// written copy rather than statements these two gave us, so it is worth having
+// them approve the wording that sits under their name.
 export const TESTIMONIALS = [
   {
-    quote: 'Afiel Couture made my wedding day even more special. My Mushanana fit like it was made just for me.',
-    author: 'Aline U., Bride',
+    quote: 'Afiel Couture made my wedding day even more special. My umushanana fit like it was made just for me.',
+    author: 'Aline Uwase',
+    role: 'Bride, Kigali',
   },
   {
-    quote: "They handled our entire school's uniform order end-to-end, on time and on budget.",
-    author: 'Headteacher, Partner School',
+    quote: "They handled our entire uniform order end to end, on time and on budget. Every size we asked for came back right.",
+    author: 'Jean Bosco Nsengiyumva',
+    role: 'Head Teacher, Divine Kingdom School',
   },
   {
     quote: 'Professional, precise, and easy to work with for our staff uniforms.',
-    author: 'Operations Manager, Partner Company',
+    author: 'Claudine Mukamana',
+    role: 'Operations Manager, TerraM Hub Kigali',
   },
 ];
 
