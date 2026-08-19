@@ -1,5 +1,0 @@
-# Afiel Couture
-User-agent: *
-Allow: /
-
-Sitemap: https://afielcouture.com/sitemap.xml
