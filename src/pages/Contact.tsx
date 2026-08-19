@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { Phone, Mail, MapPin, Clock, Instagram, ExternalLink } from 'lucide-react';
 import { CONTACT } from '../data/content';
 import usePageMeta from '../lib/usePageMeta';
+import buildSrcSet from '../lib/srcSet';
 
 /** lucide-react ships no TikTok glyph, so this one is drawn inline. */
 function TikTok({ size = 18 }: { size?: number }) {
@@ -45,6 +46,8 @@ export default function Contact() {
       <section className="relative isolate overflow-hidden">
         <img
           src="/images/contact/contact-bg.jpg"
+          srcSet={buildSrcSet('/images/contact/contact-bg.jpg')}
+          sizes="100vw"
           alt=""
           aria-hidden="true"
           className="absolute inset-0 w-full h-full object-cover object-center"

@@ -141,6 +141,8 @@ export default function Home() {
                 alt="A model in a black and gold ruffled couture gown by Afiel Couture"
                 width={645}
                 height={1489}
+                fetchPriority="high"
+                decoding="async"
                 className="block h-auto w-auto max-h-[30svh] sm:max-h-[44svh] md:max-h-[52svh] max-w-full object-contain xl:max-h-[88svh]"
               />
             </div>
@@ -178,7 +180,13 @@ export default function Home() {
         <div className="relative">
           <div className="absolute -inset-4 bg-champagne/20 -z-10 transform -rotate-2"></div>
           <div className="w-full aspect-4/5 shadow-lg">
-            <PlaceholderImage from="#B8897E" to="#5C4530" src={SITE_IMAGES.homeStory} alt="Afiel Couture tailor at work" />
+            <PlaceholderImage
+              from="#B8897E"
+              to="#5C4530"
+              src={SITE_IMAGES.homeStory}
+              alt="Afiel Couture tailor at work"
+              sizes="(max-width: 768px) 100vw, 45vw"
+            />
           </div>
           <div className="absolute -bottom-8 -right-8 bg-charcoal text-pearl p-8 hidden md:block z-10 shadow-xl max-w-50">
             <p className="font-serif italic text-xl">"Where every stitch defines elegance."</p>

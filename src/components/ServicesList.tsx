@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import { AnimatePresence, motion, useMotionValue, useMotionValueEvent } from "motion/react"
 import { useMemo, useState } from "react"
 import type { LayerScroll } from "./StackedSections"
+import buildSrcSet from "../lib/srcSet"
 
 /**
  * The copy arrives line by line as the row is revealed, rather than the whole
@@ -318,6 +319,8 @@ export function ServiceRow({
                         >
                           <img
                             src={image.src}
+                            srcSet={buildSrcSet(image.src)}
+                            sizes="(max-width: 1024px) 90vw, 480px"
                             alt={image.alt}
                             width={image.w}
                             height={image.h}

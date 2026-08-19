@@ -49,6 +49,12 @@
     />
     <meta name="twitter:image" content="https://afielcouture.com/og-image.jpg" />
 
+    <!-- The hero figure, started before the JavaScript that renders it. Every
+         image on the page lives inside a React component, so without this line
+         the browser cannot know the hero exists until roughly 175 KB of script
+         has downloaded and run, and the hero area sits empty until then. -->
+    <link rel="preload" as="image" href="/images/home/hero-figure.webp" fetchpriority="high" />
+
     <link rel="icon" href="/images/logo-dark.png" />
     <link rel="apple-touch-icon" href="/images/logo-dark.png" />
 

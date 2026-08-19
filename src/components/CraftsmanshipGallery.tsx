@@ -62,7 +62,14 @@ export default function CraftsmanshipGallery() {
                 i % 2 === 0 ? 'aspect-[3/4] translate-y-4 md:translate-y-8' : 'aspect-[4/5] -translate-y-4 md:-translate-y-8'
               }`}
             >
-              <PlaceholderImage from={s.from} to={s.to} src={s.src} alt={s.label} className="hover:scale-105 transition-transform duration-1000" />
+              <PlaceholderImage
+                from={s.from}
+                to={s.to}
+                src={s.src}
+                alt={s.label}
+                sizes="(max-width: 768px) 60vw, 30vw"
+                className="hover:scale-105 transition-transform duration-1000"
+              />
               <div className="absolute bottom-6 left-6 z-20">
                 <p className="font-sans text-[10px] uppercase tracking-[0.2em] text-white/90 drop-shadow-lg font-semibold bg-charcoal/20 px-3 py-1.5 rounded-full backdrop-blur-md">
                   {s.label}

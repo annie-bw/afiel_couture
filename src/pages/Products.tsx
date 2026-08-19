@@ -138,6 +138,7 @@ export default function Products() {
                       src={image.src}
                       alt={`${active.title}: ${image.label}`}
                       fit="cover"
+                      sizes="(max-width: 1024px) 90vw, 40vw"
                       label={isCentre ? image.label : undefined}
                       labelClassName="m-6 bg-black/30 rounded-full"
                     />

@@ -1,4 +1,5 @@
 import React from 'react';
+import buildSrcSet from '../lib/srcSet';
 
 /**
  * How the photo relates to its frame:
@@ -22,6 +23,19 @@ type Props = {
   className?: string;
   /** Extra classes on the <img> itself, for tuning object-position on a crop. */
   imgClassName?: string;
+  /**
+   * How wide this image is drawn, in CSS terms, so the browser can pick a file
+   * from srcset before layout exists. Wrong here means a wasteful download, so
+   * pass the real thing at every call site that is not roughly a third of the
+   * viewport.
+   */
+  sizes?: string;
+  /**
+   * Set on an image that is visible without scrolling. It stops the lazy
+   * attribute holding the download back and asks the browser to fetch it ahead
+   * of the rest.
+   */
+  priority?: boolean;
   labelClassName?: string;
 };
 
@@ -70,9 +84,13 @@ export default function PlaceholderImage({
   className = '',
   imgClassName = '',
   labelClassName = '',
+  sizes = '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw',
+  priority = false,
 }: Props) {
   const [failed, setFailed] = React.useState(false);
   const showPhoto = Boolean(src) && !failed;
+
+  const srcSet = buildSrcSet(src);
   const sizing = showPhoto ? WRAPPER[fit] : `${WRAPPER[fit]} ${FALLBACK_RATIO[fit]}`;
 
   return (
@@ -83,8 +101,12 @@ export default function PlaceholderImage({
       {showPhoto && (
         <img
           src={src}
+          srcSet={srcSet}
+          sizes={srcSet ? sizes : undefined}
           alt={alt ?? label ?? ''}
-          loading="lazy"
+          loading={priority ? 'eager' : 'lazy'}
+          fetchPriority={priority ? 'high' : 'auto'}
+          decoding="async"
           onError={() => setFailed(true)}
           className={`${IMAGE[fit]} ${imgClassName}`}
         />

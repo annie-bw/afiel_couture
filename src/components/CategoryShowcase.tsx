@@ -64,7 +64,13 @@ export default function CategoryShowcase() {
                 }`}
               >
                 <div className="absolute inset-0 w-full h-full transition-transform duration-1000 group-hover:scale-105">
-                  <PlaceholderImage from={prod.colorFrom} to={prod.colorTo} src={prod.cover} alt={prod.title} />
+                  <PlaceholderImage
+                    from={prod.colorFrom}
+                    to={prod.colorTo}
+                    src={prod.cover}
+                    alt={prod.title}
+                    sizes="(max-width: 640px) 100vw, 50vw"
+                  />
                 </div>
                 {/* Every card is captioned below lg, so the text gets a gradient
                     to sit on rather than the flat wash the open card uses. */}
