@@ -6,6 +6,16 @@
 # "products", does not find one, and returns 404 to anyone who types the address
 # or refreshes the page.
 
+# Apache redirects a request for a directory to the same path with a slash
+# appended, and it does that before the rewrites below get a say. The deploy left
+# an empty fabrics directory behind, so /fabrics still 301'd to /fabrics/ even
+# after the photographs moved out of it. Turning the fixup off lets the route
+# rules answer /fabrics directly. Nothing here serves a directory listing, so
+# there is nothing that needs the slash.
+<IfModule mod_dir.c>
+  DirectorySlash Off
+</IfModule>
+
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
