@@ -59,4 +59,12 @@
   Header set Referrer-Policy "strict-origin-when-cross-origin"
 </IfModule>
 
+# Hostinger's Git deployment clones the repository into the web root, which
+# leaves a .git directory sitting there. Served over HTTP that hands anyone the
+# full history of the site. Refuse it, along with any other dotfile.
+RedirectMatch 404 /\.git
+<FilesMatch "^\.">
+  Require all denied
+</FilesMatch>
+
 ErrorDocument 404 /index.html

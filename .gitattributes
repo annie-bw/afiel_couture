@@ -1,0 +1,18 @@
+# Line endings are normalised to LF in the repository and on checkout.
+#
+# This is not housekeeping. Hostinger checks the deploy branch out on a Linux
+# server, and a .htaccess written with Windows CRLF endings makes some Apache
+# builds fail on the trailing carriage return, which takes the whole site down
+# with a 500. Storing LF and checking out LF removes that class of problem.
+* text=auto eol=lf
+
+# Binaries git must never touch
+*.jpg   -text
+*.jpeg  -text
+*.png   -text
+*.webp  -text
+*.gif   -text
+*.ico   -text
+*.mp4   -text
+*.woff  -text
+*.woff2 -text
