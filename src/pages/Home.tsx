@@ -12,6 +12,7 @@ import WorkingProcess from '../components/WorkingProcess';
 import PlaceholderImage from '../components/PlaceholderImage';
 import { BRAND, TESTIMONIALS, SITE_IMAGES } from '../data/content';
 import usePageMeta from '../lib/usePageMeta';
+import imageUrl from '../lib/imageUrl';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -137,7 +138,7 @@ export default function Home() {
                 either. */}
             <div>
               <img
-                src={SITE_IMAGES.homeHero}
+                src={imageUrl(SITE_IMAGES.homeHero)}
                 alt="A model in a black and gold ruffled couture gown by Afiel Couture"
                 width={645}
                 height={1489}

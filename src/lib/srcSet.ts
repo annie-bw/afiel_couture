@@ -1,4 +1,5 @@
 import { IMAGE_VARIANTS } from '../data/imageVariants';
+import imageUrl from './imageUrl';
 
 /**
  * Builds the srcset for a photograph from the widths that exist on disk.
@@ -16,7 +17,7 @@ export default function buildSrcSet(src: string | undefined): string | undefined
     .map((w, i) => {
       const isOriginal = i === widths.length - 1;
       const file = isOriginal ? src : src.replace(/(\.[a-z]+)$/i, `-${w}w$1`);
-      return `${file} ${w}w`;
+      return `${imageUrl(file)} ${w}w`;
     })
     .join(', ');
 }

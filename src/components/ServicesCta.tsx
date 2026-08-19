@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom"
+import imageUrl from "../lib/imageUrl"
+import buildSrcSet from "../lib/srcSet"
 
 export function ServicesCta() {
   return (
@@ -9,7 +11,9 @@ export function ServicesCta() {
               height of a half-width band this photo would lose most of its
               width. Also appears under Fabric Development below. */}
           <img
-            src="/images/services/fabric-development/picking-fabric.jpg"
+            src={imageUrl("/images/services/fabric-development/picking-fabric.jpg")}
+            srcSet={buildSrcSet("/images/services/fabric-development/picking-fabric.jpg")}
+            sizes="(max-width: 1024px) 100vw, 50vw"
             alt="Hands picking through folded fabric to choose a cloth"
             width={1000}
             height={500}

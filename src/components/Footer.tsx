@@ -1,13 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { BRAND, CONTACT } from '../data/content';
+import imageUrl from '../lib/imageUrl';
 
 export default function Footer() {
   return (
     <footer className="bg-charcoal text-pearl pt-14 pb-8 px-6 md:px-12 border-t border-champagne/10">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-10 border-b border-pearl/10 pb-10">
         <div className="md:col-span-2">
-          <img src="/images/logo-light.png" alt={BRAND.name} className="h-12 w-auto mb-4" />
+          <img src={imageUrl('/images/logo-light.png')} alt={BRAND.name} className="h-12 w-auto mb-4" />
           <p className="font-sans text-sm text-pearl/60 max-w-sm leading-relaxed mb-2">{BRAND.tagline}.</p>
           <p className="font-sans text-sm text-pearl/60 max-w-sm leading-relaxed">
             Bespoke tailoring, Mushanana wear, uniforms, and premium fabrics, all handcrafted in Kigali, Rwanda.

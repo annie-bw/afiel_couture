@@ -34,21 +34,36 @@
 
 # Caching. Files under /assets/ carry a content hash in their name, so a new
 # build produces a new filename and a year-long cache can never go stale.
-# Images keep a shorter window because their names do not change when replaced.
+#
+# Images get the same year, which is only safe because every image URL carries
+# ?v=<hash of the file>, added by src/lib/imageUrl.ts from the manifest that
+# scripts/fingerprint-images.mjs writes during the build. Replace a photograph
+# and its URL changes with it, so nobody is left looking at the old one.
 <IfModule mod_expires.c>
   ExpiresActive On
   ExpiresDefault "access plus 1 day"
   ExpiresByType text/css "access plus 1 year"
   ExpiresByType application/javascript "access plus 1 year"
-  ExpiresByType image/jpeg "access plus 7 days"
-  ExpiresByType image/png "access plus 7 days"
-  ExpiresByType image/webp "access plus 7 days"
+  # Images are handled by mod_headers below, where the length of the cache can
+  # depend on whether the URL carries a version stamp.
   ExpiresByType text/html "access plus 0 seconds"
 </IfModule>
 
 <IfModule mod_headers.c>
-  <FilesMatch "\.(js|css)$">
+  <FilesMatch "\.(js|css|woff2?)$">
     Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+
+  # A year for any image asked for by version, a week for one asked for plainly.
+  # The app appends ?v=<hash of the file> to every image it renders, so those are
+  # safe to keep forever: replacing the photograph changes the hash, and with it
+  # the URL. A bare URL gets the shorter window, because a file like og-image.jpg
+  # is fetched by crawlers that never see the stamp and would otherwise be stuck
+  # with an old card for a year.
+  SetEnvIf Query_String "(^|&)v=[0-9a-f]+" versioned_asset
+  <FilesMatch "\.(jpg|jpeg|png|webp|gif|ico|svg)$">
+    Header set Cache-Control "public, max-age=604800"
+    Header set Cache-Control "public, max-age=31536000, immutable" env=versioned_asset
   </FilesMatch>
   # index.html must never be cached: it is the file that names the current
   # build's assets, so a stale copy points at files that no longer exist.

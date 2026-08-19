@@ -2,10 +2,28 @@ import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 import {defineConfig} from 'vite';
+import { IMAGE_VERSIONS } from './src/data/imageVersions';
 
 export default defineConfig(() => {
   return {
-    plugins: [react(), tailwindcss()],
+    plugins: [
+      react(),
+      tailwindcss(),
+      {
+        // index.html preloads the hero figure, and the app renders the same file
+        // with ?v=<hash> on it. Without the same stamp here the browser treats
+        // them as two different URLs and downloads the picture twice.
+        name: 'stamp-preloaded-images',
+        transformIndexHtml(html: string) {
+          for (const [path, version] of Object.entries(IMAGE_VERSIONS)) {
+            if (html.includes('"' + path + '"')) {
+              html = html.split('"' + path + '"').join('"' + path + '?v=' + version + '"');
+            }
+          }
+          return html;
+        },
+      },
+    ],
     build: {
       rollupOptions: {
         output: {

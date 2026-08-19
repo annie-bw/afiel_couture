@@ -4,6 +4,7 @@ import { AnimatePresence, motion, useMotionValue, useMotionValueEvent } from "mo
 import { useMemo, useState } from "react"
 import type { LayerScroll } from "./StackedSections"
 import buildSrcSet from "../lib/srcSet"
+import imageUrl from "../lib/imageUrl"
 
 /**
  * The copy arrives line by line as the row is revealed, rather than the whole
@@ -283,7 +284,9 @@ export function ServiceRow({
                             className="absolute inset-0"
                           >
                             <img
-                              src={service.images[shown].src}
+                              src={imageUrl(service.images[shown].src)}
+                              srcSet={buildSrcSet(service.images[shown].src)}
+                              sizes="(max-width: 1024px) 90vw, 480px"
                               alt={service.images[shown].alt}
                               width={service.images[shown].w}
                               height={service.images[shown].h}
@@ -318,7 +321,7 @@ export function ServiceRow({
                           className="relative aspect-4/5 overflow-hidden rounded-3xl bg-blush shadow-lg"
                         >
                           <img
-                            src={image.src}
+                            src={imageUrl(image.src)}
                             srcSet={buildSrcSet(image.src)}
                             sizes="(max-width: 1024px) 90vw, 480px"
                             alt={image.alt}

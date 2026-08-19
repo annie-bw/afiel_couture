@@ -5,6 +5,7 @@ import { Phone, Mail, MapPin, Clock, Instagram, ExternalLink } from 'lucide-reac
 import { CONTACT } from '../data/content';
 import usePageMeta from '../lib/usePageMeta';
 import buildSrcSet from '../lib/srcSet';
+import imageUrl from '../lib/imageUrl';
 
 /** lucide-react ships no TikTok glyph, so this one is drawn inline. */
 function TikTok({ size = 18 }: { size?: number }) {
@@ -45,7 +46,7 @@ export default function Contact() {
           middle of the band while the type stays legible over it. */}
       <section className="relative isolate overflow-hidden">
         <img
-          src="/images/contact/contact-bg.jpg"
+          src={imageUrl('/images/contact/contact-bg.jpg')}
           srcSet={buildSrcSet('/images/contact/contact-bg.jpg')}
           sizes="100vw"
           alt=""
@@ -146,7 +147,7 @@ export default function Contact() {
               className="group relative block aspect-4/3 lg:aspect-auto lg:h-full min-h-80 rounded-2xl overflow-hidden border border-charcoal/10 shadow-sm"
             >
               <img
-                src="/images/contact/map.png"
+                src={imageUrl('/images/contact/map.png')}
                 alt={`Map showing the Afiel Couture studio at ${CONTACT.addressShort}`}
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-1200 ease-out group-hover:scale-105"
               />

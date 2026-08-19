@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Menu, X } from 'lucide-react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { BRAND } from '../data/content';
+import imageUrl from '../lib/imageUrl';
 
 // Both the desktop row and the mobile overlay map over this, so a single entry
 // picks up the shared type styling, active state, and hover behaviour.
@@ -50,7 +51,7 @@ export default function Navbar() {
             rather than type. Two colour variants swap with the bar's surface. */}
         <Link to="/" className="relative z-10 flex items-center" aria-label={`${BRAND.name} home`}>
           <img
-            src={onLight ? '/images/logo-dark.png' : '/images/logo-light.png'}
+            src={imageUrl(onLight ? '/images/logo-dark.png' : '/images/logo-light.png')}
             alt={BRAND.name}
             className={`w-auto transition-all duration-500 ${scrolled ? 'h-9' : 'h-11'}`}
           />

@@ -1,5 +1,6 @@
 import React from 'react';
 import buildSrcSet from '../lib/srcSet';
+import imageUrl from '../lib/imageUrl';
 
 /**
  * How the photo relates to its frame:
@@ -100,7 +101,7 @@ export default function PlaceholderImage({
     >
       {showPhoto && (
         <img
-          src={src}
+          src={imageUrl(src)}
           srcSet={srcSet}
           sizes={srcSet ? sizes : undefined}
           alt={alt ?? label ?? ''}

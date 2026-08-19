@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom"
 import { motion } from "motion/react"
+import imageUrl from "../lib/imageUrl"
+import buildSrcSet from "../lib/srcSet"
 
 const textGroup = {
   hidden: {},
@@ -85,7 +87,9 @@ export function ServicesHero() {
             className="relative w-full max-w-sm md:max-w-[min(480px,calc(80vh_-_141px))] lg:ml-auto rounded-3xl overflow-hidden shadow-sm"
           >
             <img
-              src="/images/services/fashion-consultation/designer-fitting.jpg"
+              src={imageUrl("/images/services/fashion-consultation/designer-fitting.jpg")}
+              srcSet={buildSrcSet("/images/services/fashion-consultation/designer-fitting.jpg")}
+              sizes="(max-width: 1024px) 90vw, 480px"
               alt="A tailor measuring a client's jacket with a tape measure in the Afiel Couture showroom"
               width={1844}
               height={2304}
