@@ -30,3 +30,6 @@ scripts/*.mp4
 
 # Full-resolution originals kept by scripts/optimize-images.py.
 originals/
+
+# Upload archive built for Hostinger by hand.
+afiel-couture-site.zip
