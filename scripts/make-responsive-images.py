@@ -26,18 +26,30 @@ from PIL import Image
 
 WRITE = '--write' in sys.argv
 WIDTHS = (480, 768, 1120, 1600)
-MIN_SOURCE = 900          # below this a single file is already small enough
+MIN_SOURCE = 620          # a 300px card at 1x wants 480w, so anything above this benefits
 QUALITY = 88
 MANIFEST = 'src/data/imageVariants.ts'
 SKIP = ('/images/logo-', '/images/contact/map.png', 'hero-figure.webp')
 
 
+VARIANT = re.compile(r'-\d+w\.[A-Za-z]+$')
+
+
 def referenced():
+    """Image paths written in src/, excluding this script's own output.
+
+    The generated manifest lists every variant it has made, and the manifest
+    lives in src/. Without the filter below, a second run reads those paths back
+    and makes variants of variants: ankara-1-1120w-480w.jpg and so on.
+    """
     out = set()
-    for f in glob.glob('src/**/*.ts', recursive=True) + glob.glob('src/**/*.tsx', recursive=True):
+    sources = [f for f in glob.glob('src/**/*.ts', recursive=True) + glob.glob('src/**/*.tsx', recursive=True)
+               if os.path.basename(f) not in ('imageVariants.ts', 'imageVersions.ts')]
+    for f in sources:
         s = io.open(f, encoding='utf-8').read()
         for m in re.finditer(r"['\"](/(?:images|fabrics)/[^'\"]+)['\"]", s):
-            out.add(m.group(1))
+            if not VARIANT.search(m.group(1)):
+                out.add(m.group(1))
     return sorted(out)
 
 

@@ -1,10 +1,30 @@
-import { useMemo, useState } from "react"
+import { useMemo, useRef, useState } from "react"
 import { AnimatePresence, motion } from "motion/react"
 import { categories, fabrics, type Fabric, type FabricCategory } from "../data/fabrics"
-import { FabricCard } from "./FabricCard"
+import { FabricCard, FABRIC_CARD_SIZES } from "./FabricCard"
+import imageUrl from "../lib/imageUrl"
+import buildSrcSet from "../lib/srcSet"
 
 export function FabricCollection() {
   const [active, setActive] = useState<FabricCategory>("All")
+
+  // Fetch a category's swatches while the pointer is still on its label, so the
+  // grid is populated the moment it is clicked rather than a beat afterwards.
+  // srcset and sizes are set the same way the card sets them, so the browser
+  // warms the exact file the card will ask for rather than a different width.
+  const warmed = useRef(new Set<string>())
+  const prefetch = (cat: FabricCategory) => {
+    if (warmed.current.has(cat)) return
+    warmed.current.add(cat)
+    for (const fabric of fabrics) {
+      if (cat !== "All" && fabric.category !== cat) continue
+      const img = new Image()
+      img.sizes = FABRIC_CARD_SIZES
+      const set = buildSrcSet(fabric.image)
+      if (set) img.srcset = set
+      img.src = imageUrl(fabric.image)
+    }
+  }
 
   const visible = useMemo(() => {
     if (active !== "All") return fabrics.filter((f) => f.category === active)
@@ -48,6 +68,8 @@ export function FabricCollection() {
               key={cat}
               type="button"
               onClick={() => setActive(cat)}
+              onMouseEnter={() => prefetch(cat)}
+              onFocus={() => prefetch(cat)}
               aria-pressed={active === cat}
               className={`shrink-0 whitespace-nowrap text-xs uppercase tracking-[0.18em] underline-offset-8 transition-colors ${
                 active === cat
