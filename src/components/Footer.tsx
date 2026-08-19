@@ -10,8 +10,12 @@ export default function Footer() {
         <div className="md:col-span-2">
           <img src={imageUrl('/images/logo-light.png')} alt={BRAND.name} className="h-12 w-auto mb-4" />
           <p className="font-sans text-sm text-pearl/60 max-w-sm leading-relaxed mb-2">{BRAND.tagline}.</p>
+          {/* The name is written out here, not only inside the logo image. On
+              every page it is the one place a search engine reads the business
+              name, the trade and the city as plain text. */}
           <p className="font-sans text-sm text-pearl/60 max-w-sm leading-relaxed">
-            Bespoke tailoring, Mushanana wear, uniforms, and premium fabrics, all handcrafted in Kigali, Rwanda.
+            {BRAND.name} is a couture house and textile manufacturer in Kigali, Rwanda: bespoke tailoring, umushanana,
+            uniforms, and fabrics from our own production floor.
           </p>
         </div>
 
