@@ -15,7 +15,7 @@ import { createHash } from 'node:crypto';
 import { readFileSync, writeFileSync, readdirSync, statSync } from 'node:fs';
 import { join, sep } from 'node:path';
 
-const ROOTS = ['public/images', 'public/fabrics'];
+const ROOTS = ['public/images'];
 const OUT = 'src/data/imageVersions.ts';
 
 function walk(dir, found = []) {

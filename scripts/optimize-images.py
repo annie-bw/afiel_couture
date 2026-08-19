@@ -39,6 +39,7 @@ BACKUP = 'originals'
 # Widest CSS box each group is drawn in, doubled for retina screens. Sources:
 # the max-w / aspect / height classes on the components that render them.
 SLOTS = (
+    ('/images/fabrics/',             600),  # swatch card
     ('/images/contact/',            2880),  # full-bleed section background
     ('/images/home/five_categories', 1120),  # category card, expanded state at lg
     ('/images/home/',               1240),  # story image, two-column at md
@@ -46,7 +47,6 @@ SLOTS = (
     ('/images/products/',            960),  # gallery card, aspect 2/3
     ('/images/services/',            960),  # service card, aspect 4/5
     ('/images/craftsmanship/',       750),  # archive slide, max-h 500
-    ('/fabrics/',                    600),  # swatch card
 )
 # Left alone: logos and the contact map are PNG line art and screenshots, where
 # JPEG is the wrong tool, and the hero cutout is a WebP that needs its alpha.

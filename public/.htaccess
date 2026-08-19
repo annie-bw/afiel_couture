@@ -24,6 +24,14 @@
   RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
   RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L]
 
+  # The app's own routes resolve to index.html even if a directory of the same
+  # name exists. This is not hypothetical: the fabric photographs lived in
+  # public/fabrics, so /fabrics matched a real directory, Apache redirected to
+  # /fabrics/, found no index file and returned 403. The page was unreachable by
+  # URL while internal navigation still worked, which is the kind of fault nobody
+  # notices until a search engine crawls it.
+  RewriteRule ^(products|fabrics|services|about|contact)(/.*)?$ index.html [L]
+
   # A real file or directory is served as itself. Everything else is handed to
   # index.html, which is what makes deep links and refreshes work.
   RewriteCond %{REQUEST_FILENAME} -f [OR]
