@@ -22,7 +22,6 @@ export default function Home() {
   );
 
   const heroRef = useRef<HTMLElement>(null);
-  const heroBgRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const lenis = new Lenis({
@@ -74,33 +73,6 @@ export default function Home() {
         }
       });
 
-      if (heroRef.current && heroBgRef.current) {
-        gsap.set(heroBgRef.current, { scale: 1, transformPerspective: 1000 });
-
-        const handleMouseMove = (e: MouseEvent) => {
-          const { clientX, clientY } = e;
-          const { width, height, left, top } = heroRef.current!.getBoundingClientRect();
-          const x = (clientX - left) / width - 0.5;
-          const y = (clientY - top) / height - 0.5;
-
-          gsap.to(heroBgRef.current, {
-            x: x * -40,
-            y: y * -40,
-            rotationY: x * 10,
-            rotationX: y * -10,
-            scale: 1.03,
-            ease: 'power2.out',
-            duration: 1,
-          });
-        };
-
-        const handleMouseLeave = () => {
-          gsap.to(heroBgRef.current, { x: 0, y: 0, rotationY: 0, rotationX: 0, scale: 1, ease: 'power2.out', duration: 1.5 });
-        };
-
-        heroRef.current.addEventListener('mousemove', handleMouseMove);
-        heroRef.current.addEventListener('mouseleave', handleMouseLeave);
-      }
     });
     return () => ctx.revert();
   }, []);
@@ -159,11 +131,11 @@ export default function Home() {
             transition={{ duration: 1.4, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
             className="relative flex justify-center"
           >
-            {/* heroBgRef sits on this wrapper, not on the motion.div above:
-                framer-motion already writes transforms there for the entrance
-                fade, and GSAP writing to the same element would fight it. This
-                is the element the mouse parallax drifts and tilts. */}
-            <div ref={heroBgRef} className="will-change-transform">
+            {/* The figure holds still. It used to drift and tilt with the
+                pointer, which also meant it never sat where it was composed to
+                sit. No transform here now, so nothing to hint to the compositor
+                either. */}
+            <div>
               <img
                 src={SITE_IMAGES.homeHero}
                 alt="A model in a black and gold ruffled couture gown by Afiel Couture"
