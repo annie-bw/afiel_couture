@@ -1,0 +1,70 @@
+# Afiel Couture, on Apache or LiteSpeed (Hostinger).
+#
+# This file has to exist. The site is a single-page app: only / is a real file
+# on disk, and /products, /services and the rest are routes the JavaScript
+# resolves. Without the rewrite below the server looks for a directory named
+# "products", does not find one, and returns 404 to anyone who types the address
+# or refreshes the page.
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Serve HTTPS. Hostinger issues the certificate; this makes sure the plain
+  # http:// address does not serve a second copy of the site, which search
+  # engines would treat as duplicate content.
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+
+  # A real file or directory is served as itself. Everything else is handed to
+  # index.html, which is what makes deep links and refreshes work.
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+  RewriteRule ^ index.html [L]
+</IfModule>
+
+# Compression. Text assets are roughly a third of their size over the wire.
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/xml
+  AddOutputFilterByType DEFLATE application/javascript application/json
+  AddOutputFilterByType DEFLATE application/xml image/svg+xml
+</IfModule>
+
+# Caching. Files under /assets/ carry a content hash in their name, so a new
+# build produces a new filename and a year-long cache can never go stale.
+# Images keep a shorter window because their names do not change when replaced.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault "access plus 1 day"
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 7 days"
+  ExpiresByType image/png "access plus 7 days"
+  ExpiresByType image/webp "access plus 7 days"
+  ExpiresByType text/html "access plus 0 seconds"
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(js|css)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  # index.html must never be cached: it is the file that names the current
+  # build's assets, so a stale copy points at files that no longer exist.
+  <FilesMatch "index\.html$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+  Header set X-Content-Type-Options "nosniff"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# Hostinger's Git deployment clones the repository into the web root, which
+# leaves a .git directory sitting there. Served over HTTP that hands anyone the
+# full history of the site. Refuse it, along with any other dotfile.
+RedirectMatch 404 /\.git
+<FilesMatch "^\.">
+  Require all denied
+</FilesMatch>
+
+ErrorDocument 404 /index.html

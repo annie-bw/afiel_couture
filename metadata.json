@@ -1,0 +1,6 @@
+{
+  "name": "Afiel Couture",
+  "description": "Bespoke tailoring, Mushanana wear, uniforms, and premium fabrics — Afiel Couture's website, featuring an interactive text curtain and elegant scroll animations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
