@@ -14,8 +14,8 @@ export default function Footer() {
               every page it is the one place a search engine reads the business
               name, the trade and the city as plain text. */}
           <p className="font-sans text-sm text-pearl/60 max-w-sm leading-relaxed">
-            {BRAND.name} is a couture house and textile manufacturer in Kigali, Rwanda: bespoke tailoring, umushanana,
-            uniforms, and fabrics from our own production floor.
+            {BRAND.name} is a bespoke fashion house in Kigali creating custom suits, elegant dresses and tailored
+            uniforms, expertly crafted for your style and perfect fit.
           </p>
         </div>
 
