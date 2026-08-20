@@ -19,7 +19,7 @@ gsap.registerPlugin(ScrollTrigger);
 export default function Home() {
   usePageMeta(
     'Afiel Couture',
-    'Afiel Couture is a Kigali couture house and textile manufacturer: bespoke tailoring, umushanana, school and corporate uniforms, fabrics, and alterations.',
+    'Looking for custom tailoring in Kigali? Afiel Couture designs and tailors made-to-measure suits, dresses and uniforms with fabrics selected for your unique style.',
   );
 
   const heroRef = useRef<HTMLElement>(null);
