@@ -37,7 +37,16 @@ export default function CategoryShowcase() {
             </div>
           </div>
 
-          <div className="flex-shrink-0 stagger-item w-full lg:w-auto flex lg:justify-end mt-4 lg:mt-0">
+          <div className="flex-shrink-0 stagger-item w-full lg:w-auto flex flex-col sm:flex-row gap-3 lg:justify-end mt-4 lg:mt-0">
+            {/* Fabrics sits beside Products here so the page is linked from the
+                content and not only from the navigation every page carries. */}
+            <Link
+              to="/fabrics"
+              className="group flex items-center justify-center space-x-4 px-8 py-4 rounded-full border border-pearl/30 hover:bg-pearl hover:text-[#3a2a26] transition-all duration-300 w-full md:w-auto"
+            >
+              <span className="font-sans text-[10px] uppercase tracking-widest font-semibold">Fabrics In Store</span>
+              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+            </Link>
             <Link
               to="/products"
               className="group flex items-center justify-center space-x-4 px-8 py-4 rounded-full border border-pearl/30 hover:bg-pearl hover:text-[#3a2a26] transition-all duration-300 w-full md:w-auto"

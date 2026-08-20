@@ -24,6 +24,7 @@ export default function Footer() {
           <ul className="space-y-2 font-sans text-sm text-pearl/80">
             <li><Link to="/" className="hover:text-champagne transition-colors">Home</Link></li>
             <li><Link to="/products" className="hover:text-champagne transition-colors">Products</Link></li>
+            <li><Link to="/fabrics" className="hover:text-champagne transition-colors">Fabrics</Link></li>
             <li><Link to="/services" className="hover:text-champagne transition-colors">Services</Link></li>
             <li><Link to="/about" className="hover:text-champagne transition-colors">About Us</Link></li>
             <li><Link to="/contact" className="hover:text-champagne transition-colors">Contact</Link></li>

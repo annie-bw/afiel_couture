@@ -49,9 +49,9 @@ export function FabricCollection() {
           <span className="text-xs uppercase tracking-[0.3em] text-champagne">
             The Fabrics
           </span>
-          <h2 className="mt-4 text-balance font-serif text-4xl font-light text-charcoal lg:text-5xl">
+          <h1 className="mt-4 text-balance font-serif text-4xl font-light text-charcoal lg:text-5xl">
             Cloths we have in store
-          </h2>
+          </h1>
         </div>
 
         {/* Full-width row of its own rather than sharing one with the heading:
