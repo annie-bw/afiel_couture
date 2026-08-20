@@ -19,7 +19,7 @@ gsap.registerPlugin(ScrollTrigger);
 export default function Home() {
   usePageMeta(
     'Afiel Couture',
-    'Looking for custom tailoring in Kigali? Afiel Couture designs and tailors made-to-measure suits, dresses and uniforms with fabrics selected for your unique style.',
+    'Looking for custom tailoring in Kigali? Afiel Couture designs and tailors made-to-measure suits, dresses and uniforms with fabrics selected for your style.',
   );
 
   const heroRef = useRef<HTMLElement>(null);
