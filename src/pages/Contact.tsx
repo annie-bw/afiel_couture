@@ -37,6 +37,7 @@ export default function Contact() {
   usePageMeta(
     'Contact',
     'Visit KG 7 St, Rindiro, Kimironko, Kigali. Call +250 796 690 256 or email afielcouture@gmail.com. Open Monday to Saturday, 8:00 AM to 6:00 PM.',
+    [{ name: 'Home', path: '/' }, { name: 'Contact', path: '/contact' }],
   );
 
   return (

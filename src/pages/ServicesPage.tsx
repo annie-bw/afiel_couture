@@ -20,6 +20,7 @@ export default function ServicesPage() {
   usePageMeta(
     'Services',
     'Fabric development, alterations and repairs, and fashion consultation, from a Kigali couture house that runs its own production floor.',
+    [{ name: 'Home', path: '/' }, { name: 'Services', path: '/services' }],
   );
 
   const stacked = useStackedScroll()

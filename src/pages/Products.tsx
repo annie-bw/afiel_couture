@@ -21,7 +21,11 @@ export default function Products() {
 
   // The snippet follows the category being viewed, so /products/school-uniforms
   // lists in search as its own page rather than as a copy of /products.
-  usePageMeta(active.title, active.description);
+  usePageMeta(active.title, active.description, [
+    { name: 'Home', path: '/' },
+    { name: 'Products', path: '/products' },
+    { name: active.title, path: `/products/${active.slug}` },
+  ]);
 
   const [index, setIndex] = useState(0);
   const count = active.gallery.length;

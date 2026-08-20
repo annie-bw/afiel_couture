@@ -12,6 +12,7 @@ export default function About() {
   usePageMeta(
     'About Us',
     'More than 26 years in textiles and garments. Afiel Couture is the couture house of Afriktexia, cutting and finishing every piece in Kigali, Rwanda.',
+    [{ name: 'Home', path: '/' }, { name: 'About Us', path: '/about' }],
   );
 
   const [openFaq, setOpenFaq] = useState<number | null>(0);

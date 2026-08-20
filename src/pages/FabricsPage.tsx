@@ -5,6 +5,7 @@ export default function FabricsPage() {
   usePageMeta(
     'Fabrics in Store',
     'Ankara, lace, silk, chiffon, cotton, linen, tulle, wool and tissin, dyed and finished at our own mill in Kigali. Come and see what is in store.',
+    [{ name: 'Home', path: '/' }, { name: 'Fabrics', path: '/fabrics' }],
   );
 
   return (
